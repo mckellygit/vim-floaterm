@@ -126,12 +126,14 @@ function! s:open_float(bufnr, config) abort
         \ 'width': a:config.width - 2,
         \ 'height': a:config.height - 2,
         \ 'style':'minimal',
+        \ 'border':'single',
+        \ 'title': a:config.title,
         \ }
   let winid = nvim_open_win(a:bufnr, v:true, options)
   call s:init_win(winid, v:false)
   call floaterm#config#set(a:bufnr, 'winid', winid)
 
-  if !(exists('&winborder') && &winborder !=# '' && &winborder !=# 'none')
+  if !(exists('&winborder') && &winborder !=# '' && &winborder !=# 'none-MCK-SKIP')
     let bd_options = {
           \ 'relative': 'editor',
           \ 'anchor': a:config.anchor,
